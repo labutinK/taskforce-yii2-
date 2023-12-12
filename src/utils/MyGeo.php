@@ -31,7 +31,7 @@ class MyGeo
 
             $response = $client->send($request, [
                 'query' => [
-                    'apikey' => $_ENV['YANDEX_SUGGEST_API_KEY2'],
+                    'apikey' => $_ENV['YANDEX_JS_API_KEY'],
                     'geocode' => $address,
                     'format' => 'json',
                 ],
@@ -86,7 +86,7 @@ class MyGeo
 
             $response = $client->send($request, [
                 'query' => [
-                    'apikey' => $_ENV['YANDEX_SUGGEST_API_KEY2'],
+                    'apikey' => $_ENV['YANDEX_JS_API_KEY'],
                     'geocode' => str_replace(' ', ',', $coordinates),
                     'format' => 'json',
                 ],

@@ -1,233 +1,92 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
-    <br>
-</p>
+# TaskForce - The On-Demand Task Marketplace
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-rapidly creating small projects.
+## About TaskForce
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
+TaskForce is an educational project implemented with the Yii2 framework, courtesy of HTML Academy. It's an online marketplace that connects customers with freelancers for one-off tasks. Think of it as a classified ads platform where individuals can post tasks and freelancers can respond with their offers and quotes.
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-basic/actions?query=workflow%3Abuild)
+## Features
 
-DIRECTORY STRUCTURE
--------------------
+- Task postings by customers
+- Freelancer responses and offers
+- Dynamic task and user management
 
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
+## Getting Started
 
+To get started with TaskForce, you need to set up the environment:
 
+### Prerequisites
 
-REQUIREMENTS
-------------
+- PHP 7.2 or higher
+- MySQL or MariaDB
+- Composer
 
-The minimum requirement by this project template that your Web server supports PHP 7.4.
+### Installation
 
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Run `composer install` to install the dependencies.
 
-INSTALLATION
-------------
+### Database Setup
 
-### Install via Composer
+The database dump is located at `/src/taskforce.sql`. To set up your database:
 
-If you do not have [Composer](https://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](https://getcomposer.org/doc/00-intro.md#installation-nix).
+1. Create a new database in your MySQL or MariaDB server.
+2. Import the `taskforce.sql` file into your database.
+3. Configure your database connection in `/config/db.php` by updating the following details:
 
-You can then install this project template using the following command:
-
-~~~
-composer create-project --prefer-dist yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
-
-### Install from an Archive File
-
-Extract the archive file downloaded from [yiiframework.com](https://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
-```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
-```
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-### Install with Docker
-
-Update your vendor packages
-
-    docker-compose run --rm php composer update --prefer-dist
-    
-Run the installation triggers (creating cookie validation code)
-
-    docker-compose run --rm php composer install    
-    
-Start the container
-
-    docker-compose up -d
-    
-You can then access the application through the following URL:
-
-    http://127.0.0.1:8000
-
-**NOTES:** 
-- Minimum required Docker engine version `17.04` for development (see [Performance tuning for volume mounts](https://docs.docker.com/docker-for-mac/osxfs-caching/))
-- The default configuration uses a host-volume in your home directory `.docker-composer` for composer caches
-
-
-CONFIGURATION
--------------
-
-### Database
-
-Edit the file `config/db.php` with real data, for example:
-
-```php
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '1234',
-    'charset' => 'utf8',
-];
-```
-
-**NOTES:**
-- Yii won't create the database for you, this has to be done manually before you can access it.
-- Check and edit the other files in the `config/` directory to customize your application as required.
-- Refer to the README in the `tests` directory for information specific to basic application tests.
-
-
-TESTING
--------
-
-Tests are located in `tests` directory. They are developed with [Codeception PHP Testing Framework](https://codeception.com/).
-By default, there are 3 test suites:
-
-- `unit`
-- `functional`
-- `acceptance`
-
-Tests can be executed by running
-
-```
-vendor/bin/codecept run
-```
-
-The command above will execute unit and functional tests. Unit tests are testing the system components, while functional
-tests are for testing user interaction. Acceptance tests are disabled by default as they require additional setup since
-they perform testing in real browser. 
-
-
-### Running  acceptance tests
-
-To execute acceptance tests do the following:  
-
-1. Rename `tests/acceptance.suite.yml.example` to `tests/acceptance.suite.yml` to enable suite configuration
-
-2. Replace `codeception/base` package in `composer.json` with `codeception/codeception` to install full-featured
-   version of Codeception
-
-3. Update dependencies with Composer 
-
-    ```
-    composer update  
-    ```
-
-4. Download [Selenium Server](https://www.seleniumhq.org/download/) and launch it:
-
-    ```
-    java -jar ~/selenium-server-standalone-x.xx.x.jar
-    ```
-
-    In case of using Selenium Server 3.0 with Firefox browser since v48 or Google Chrome since v53 you must download [GeckoDriver](https://github.com/mozilla/geckodriver/releases) or [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and launch Selenium with it:
-
-    ```
-    # for Firefox
-    java -jar -Dwebdriver.gecko.driver=~/geckodriver ~/selenium-server-standalone-3.xx.x.jar
-    
-    # for Google Chrome
-    java -jar -Dwebdriver.chrome.driver=~/chromedriver ~/selenium-server-standalone-3.xx.x.jar
-    ``` 
-    
-    As an alternative way you can use already configured Docker container with older versions of Selenium and Firefox:
-    
-    ```
-    docker run --net=host selenium/standalone-firefox:2.53.0
-    ```
-
-5. (Optional) Create `yii2basic_test` database and update it by applying migrations if you have them.
-
-   ```
-   tests/bin/yii migrate
+   ```php
+   return [
+       'class' => 'yii\db\Connection',
+       'dsn' => 'mysql:host=your_host;dbname=your_db',
+       'username' => 'your_username',
+       'password' => 'your_password',
+       'charset' => 'utf8',
+   ];
    ```
 
-   The database configuration can be found at `config/test_db.php`.
+Replace `your_host`, `your_db`, `your_username`, and `your_password` with your actual database details.
 
+### Environment Variables
 
-6. Start web server:
+TaskForce requires a `.env` file at the root of your project for API keys and other sensitive data, which is not included in the repository for security reasons. You need to create this `.env` file with the following variables:
 
-    ```
-    tests/bin/yii serve
-    ```
-
-7. Now you can run all available tests
-
-   ```
-   # run all available tests
-   vendor/bin/codecept run
-
-   # run acceptance tests
-   vendor/bin/codecept run acceptance
-
-   # run only unit and functional tests
-   vendor/bin/codecept run unit,functional
-   ```
-
-### Code coverage support
-
-By default, code coverage is disabled in `codeception.yml` configuration file, you should uncomment needed rows to be able
-to collect code coverage. You can run your tests and collect coverage with the following command:
-
-```
-#collect coverage for all tests
-vendor/bin/codecept run --coverage --coverage-html --coverage-xml
-
-#collect coverage only for unit tests
-vendor/bin/codecept run unit --coverage --coverage-html --coverage-xml
-
-#collect coverage for unit and functional tests
-vendor/bin/codecept run functional,unit --coverage --coverage-html --coverage-xml
+```env
+YANDEX_JS_API_KEY=your_yandex_js_api_key
+YANDEX_SUGGEST_API_KEY=your_yandex_suggest_api_key
+VK_CLIENT_ID=your_vk_client_id
+VK_CLIENT_SECRET=your_vk_client_secret
 ```
 
-You can see code coverage output under the `tests/_output` directory.
+### Directory Structure
+
+Here's an overview of the main directories in the TaskForce project:
+
+- `assets`: Asset bundles configuration.
+- `commands`: Console commands (controllers).
+- `config`: Configuration files.
+- `controllers`: Web controllers.
+- `fixtures`: Fixtures for testing.
+- `mail`: Email templates.
+- `migrations`: Database migrations.
+- `models`: Model classes.
+- `runtime`: Runtime files.
+- `src`: Custom source code.
+- `tests`: Test cases.
+- `vagrant`: Vagrant configuration for virtualization.
+- `vendor`: Composer dependencies.
+- `views`: View files.
+- `web`: Webroot directory containing the entry script and web resources.
+- `widgets`: Widgets classes.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- HTML Academy for providing the opportunity to work on this wonderful project.
+- Yii2 Framework for the robust foundation.
+- All contributors who participated in this project.
+```
+
+Please remember to replace placeholders such as `your_yandex_js_api_key`, `your_vk_client_id`, and other similar values with the actual keys and credentials. This README does not include sensitive data and assumes you will fill in the actual values before using the file.
